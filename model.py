@@ -1,55 +1,99 @@
-import numpy as np # linear algebra
-import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
+import pandas as pd
+from sklearn.linear_model import LinearRegression
 
+# Load the housing data from the CSV file
+housing_data = pd.read_csv('housing.csv')
 
-import os
-for dirname, _, filenames in os.walk('/kaggle/input'):
-    for filename in filenames:
-        print(os.path.join(dirname, filename))
+# Split the data into features (X) and target (y)
+X = housing_data.drop('price', axis=1)
+y = housing_data['price']
 
-df = pd.read_csv('housing.csv')
+# Convert categorical variables to numerical variables
+X = pd.get_dummies(X, drop_first=True)
 
-cat_col_list = list(df.select_dtypes('object').columns)
-cat_col_list
+# Train the linear regression model
+model = LinearRegression()
+model.fit(X, y)
 
+# Ask the user for input parameters
+area = float(input('Enter the area of the house: '))
+bedrooms = int(input('Enter the number of bedrooms: '))
+bathrooms = int(input('Enter the number of bathrooms: '))
+stories = int(input('Enter the number of stories: '))
 
-df_cat = df.select_dtypes('object')
-df_cat
+mainroad = input('Does the house have mainroad? (yes/no): ')
+if mainroad.lower() == 'yes':
+    mainroad_yes = 1
+else:
+    mainroad_yes = 0
 
-from sklearn.preprocessing import LabelBinarizer, LabelEncoder
+guestroom = input('Does the house have guestroom? (yes/no): ')
+if guestroom.lower() == 'yes':
+    guestroom_yes = 1
+else:
+    guestroom_yes = 0
 
-label_binarizer_cols = []
-label_encoder_col = []
+basement = input('Does the house have basement? (yes/no): ')
+if basement.lower() == 'yes':
+    basement_yes = 1
+else:
+    basement_yes = 0
 
-for each_col in df_cat.columns:
-    if len(df_cat[each_col].unique()) == 2:
-        label_binarizer_cols.append(each_col)
-    else:
-        label_encoder_col.append(each_col)
-    print(df_cat[each_col].unique())
+hotwaterheating = input('Does the house have hotwaterheating? (yes/no): ')
+if hotwaterheating.lower() == 'yes':
+    hotwaterheating_yes = 1
+else:
+    hotwaterheating_yes = 0
 
-lb_obj = {}
-for each_col in label_binarizer_cols:
-    lb = LabelBinarizer()
-    lb_obj[each_col] = lb
-    df[each_col] = lb.fit_transform(df[each_col])
+airconditioning = input('Does the house have air conditioning? (yes/no): ')
+if airconditioning.lower() == 'yes':
+    airconditioning_yes = 1
+else:
+    airconditioning_yes = 0
 
-le_obj = {}
-for each_col in label_encoder_col:
-    le = LabelEncoder()
-    le_obj[each_col] = le
-    df[each_col] = le.fit_transform(df[each_col])
+prefarea = input('Does the house prefarea? (yes/no): ')
+if prefarea.lower() == 'yes':
+    prefarea_yes = 1
+else:
+    prefarea_yes = 0
 
-x = df.drop('price', axis = 1)
-y = df['price']
+parking = int(input('How many parking spots does the house have? '))
+furnishingstatus = input('Enter the furnishing status of the house (furnished, semifurnished, unfurnished): ')
 
-# Model Building using 3 different algorithms
+# Convert the input parameters to a pandas dataframe
+user_data = pd.DataFrame({
+    'area': [area],
+    'bedrooms': [bedrooms],
+    'bathrooms': [bathrooms],
+    'stories': [stories],
 
-from sklearn.linear_model import LinearRegression, RidgeCV, LassoCV
-# Linear Regression model
-# Assigning the algorithm to the variable
-lr = LinearRegression()
+    'mainroad_yes': [mainroad_yes],
+    'guestroom_yes': [guestroom_yes],
+    'basement_yes': [basement_yes],
+    'hotwaterheating_yes': [hotwaterheating_yes],
+    'airconditioning_yes': [airconditioning_yes],
+    'prefarea_yes': [prefarea_yes],
+    'parking': [parking],
+    'furnishingstatus': [furnishingstatus]
+    
 
-# Fitting of the model
-lr.fit(x,y)
-lr.predict(x)[1:50]
+})
+
+# Convert the 'furnishingstatus' feature to dummy variables
+user_data = pd.get_dummies(user_data, columns=['furnishingstatus'], drop_first=True)
+
+# Add dummy variables for missing categorical variables
+categorical_variables = ['airconditioning', 'basement', 'guestroom', 'hotwaterheating','mainroad','prefarea']
+dummy_variables = ['furnishingstatus_semi-furnished', 'furnishingstatus_unfurnished']
+for variable in categorical_variables + dummy_variables:
+    if variable not in user_data.columns:
+        user_data[variable+'_yes'] = 0
+
+# Make sure the order of columns in user_data matches the order of columns in X
+user_data = user_data.reindex(columns=X.columns, fill_value=0)
+
+# Use the model to predict the house price
+predicted_price = model.predict(user_data)[0]
+
+# Print the predicted house price
+print('The predicted house price is $%.2f' % predicted_price)
