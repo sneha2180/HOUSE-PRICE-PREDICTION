@@ -53,9 +53,50 @@
     return -1; // Invalid Value
     }
 
+//BASEMENT
+  function getBasementValue() {
+    var uiBasement = document.getElementsByName("uiBasement");
+    for(var i in uiBasement) {
+      if(uiBasement[i].checked) {
+          return parseInt(i)+1;
+      }
+    }
+    return -1; // Invalid Value
+    }
 
 
+//HOTWATER
+  function getHotwaterValue() {
+    var uiHotwater = document.getElementsByName("uiHotwater");
+    for(var i in uiHotwater) {
+      if(uiHotwater[i].checked) {
+          return parseInt(i)+1;
+      }
+    }
+    return -1; // Invalid Value
+    }
 
+//AC
+  function getACValue() {
+    var uiAC = document.getElementsByName("uiAC");
+    for(var i in uiAC) {
+      if(uiAC[i].checked) {
+          return parseInt(i)+1;
+      }
+    }
+    return -1; // Invalid Value
+    }
+
+//PREF
+  function getPrefValue() {
+    var uiPref = document.getElementsByName("uiPref");
+    for(var i in uiPref) {
+      if(uiPref[i].checked) {
+          return parseInt(i)+1;
+      }
+    }
+    return -1; // Invalid Value
+    }
 
 
 

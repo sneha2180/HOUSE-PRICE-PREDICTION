@@ -13,6 +13,8 @@
     <form class="form">
 	<h2>Area (Square Feet)</h2>
     <input class="area"  type="text" id="uiSqft" class="floatLabel" name="Squareft" value="1000">
+    <h2>Parking Spots</h2>
+    <input class="area"  type="text" id="uiSqft" class="floatLabel" name="Squareft" value="0">
 	<h2>Bedrooms</h2>
 	<div class="switch-field">
 		<input type="radio" id="radio-bhk-1" name="uiBHK" value="1"/>
@@ -91,14 +93,49 @@
                 <label for="radio-Basement-2">NO</label>
         </div>
         </form>
+    
+    <form class="form">
+    <h2>HotWaterHeating</h2>
+    <div class="switch-field">
+        <input type="radio" id="radio-Hotwater-1" name="uiHotwater" value="1"/>
+            <label for="radio-Hotwater-1">YES</label>
+            <input type="radio" id="radio-Hotwater-2" name="uiHotwater" value="2" checked/>
+            <label for="radio-Hotwater-2">NO</label>
+        </div>
+        </form>
 
     <form class="form">
-	<h2>Location</h2>
+        <h2>AC</h2>
+        <div class="switch-field">
+            <input type="radio" id="radio-AC-1" name="uiAC" value="1"/>
+                <label for="radio-AC-1">YES</label>
+                <input type="radio" id="radio-AC-2" name="uiAC" value="2" checked/>
+                <label for="radio-AC-2">NO</label>
+            </div>
+            </form>
+    
+    
+    <form class="form">
+        <h2>Prefered Area</h2>
+        <div class="switch-field">
+            <input type="radio" id="radio-Pref-1" name="uiPref" value="1"/>
+                    <label for="radio-Pref-1">YES</label>
+                    <input type="radio" id="radio-Pref-2" name="uiPref" value="2" checked/>
+                    <label for="radio-Pref-2">NO</label>
+            </div>
+            </form>
+
+
+
+
+    <form class="form">
+	<h2>Furnishing Status</h2>
 	<div>
     <select class="location" name="" id="uiLocations">
-    <option value="" disabled="disabled" selected="selected">Choose a Location</option>
-		<option>Electronic City</option>
-        <option>Rajaji Nagar</option>
+    <option value="" disabled="disabled" selected="selected">Choose a Furnishing Status</option>
+		<option>Furnished</option>
+        <option>Semi-Furnished</option>
+        <option>Un-Furnished</option>
     </select>
     </div>
     </form>
