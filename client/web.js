@@ -1,13 +1,4 @@
-function getBathValue() {
-    var uiBathrooms = document.getElementsByName("uiBathrooms");
-    for(var i in uiBathrooms) {
-      if(uiBathrooms[i].checked) {
-          return parseInt(i)+1;
-      }
-    }
-    return -1; // Invalid Value
-  }
-  
+//BEDROOMS
   function getBHKValue() {
     var uiBHK = document.getElementsByName("uiBHK");
     for(var i in uiBHK) {
@@ -16,8 +7,59 @@ function getBathValue() {
       }
     }
     return -1; // Invalid Value
-  }
+    } 
+
+//BATHROOMS
+  function getBathValue() {
+      var uiBathrooms = document.getElementsByName("uiBathrooms");
+      for(var i in uiBathrooms) {
+        if(uiBathrooms[i].checked) {
+            return parseInt(i)+1;
+        }
+      }
+      return -1; // Invalid Value
+      }
   
+//STORIES
+  function getStoriesValue() {
+    var uiStories = document.getElementsByName("uiStories");
+    for(var i in uiStories) {
+      if(uiStories[i].checked) {
+          return parseInt(i)+1;
+      }
+    }
+    return -1; // Invalid Value
+    }
+  
+//MAINROAD
+  function getMainroadValue() {
+    var uiMainroad = document.getElementsByName("uiMainroad");
+    for(var i in uiMainroad) {
+      if(uiMainroad[i].checked) {
+          return parseInt(i)+1;
+      }
+    }
+    return -1; // Invalid Value
+    }
+
+//GUESTROOM
+  function getGuestroomValue() {
+    var uiGuestroom = document.getElementsByName("uiGuestroom");
+    for(var i in uiGuestroom) {
+      if(uiGuestroom[i].checked) {
+          return parseInt(i)+1;
+      }
+    }
+    return -1; // Invalid Value
+    }
+
+
+
+
+
+
+
+
   function onClickedEstimatePrice() {
     console.log("Estimate price button clicked");
     var sqft = document.getElementById("uiSqft");
