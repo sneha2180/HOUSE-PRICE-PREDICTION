@@ -3,8 +3,8 @@
 
 <head>
     <title>Home Price Prediction</title>
-    <script src="index.js"></script>
-	<link rel="stylesheet" href="index.css">
+
+	<link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
 </head>
 
 <body>
@@ -119,8 +119,12 @@
                     <option value="unfurnished">Un-Furnished</option>
                   </select>                  
             </div>
+            <form action="/predict" method="post">
+                <!-- Form inputs here -->
+                <input type="submit" value="Predict">
+            </form>
             
-
-    <button class="submit" onclick="onClickedEstimatePrice()" type="button">Estimate Price</button>
-	<div id="uiEstimatedPrice" class="result">	<h2>{{ predicted_price }}</h2> </div>
+            {% if predicted_price %}
+                <h2>Predicted Price: {{ predicted_price }}</h2>
+            {% endif %}
 </body>

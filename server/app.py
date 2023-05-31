@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 import pandas as pd
 from sklearn.linear_model import LinearRegression
 
-app = Flask(__name__)
+app = Flask(__name__,static_url_path='/static')
 
 # Load the housing data from the CSV file
 housing_data = pd.read_csv('../model/housing.csv')
