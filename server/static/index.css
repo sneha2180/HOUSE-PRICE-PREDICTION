@@ -52,7 +52,16 @@
 	padding-left: 16px;
 	z-index: 2;
 }
-
+.row1
+{
+	position: absolute;
+	left: 50%; /* X-coordinate */	  
+}
+.row2
+{
+	position: absolute;
+	left: 75%; /* X-coordinate */	  
+}
 h2 {
 	font-size: 18px;
 	margin-bottom: 8px;

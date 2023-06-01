@@ -11,6 +11,7 @@
 <div class="img"></div>
 
     <form class="form" action="/predict" method="POST">
+        <div class="row1">
         <h2>AREA (Square Feet)</h2>
         <input class="area floatLabel"  type="text" id="uiSqft"  name="area" value="1000">
 
@@ -59,7 +60,18 @@
             <label for="radio-stories-5">5</label>
         </div>
 
-    
+        <h2>FURNISHING STATUS</h2>
+        <div>
+            <select class="location" name="furnishingstatus" id="uiLocations">
+                <option value="" disabled="disabled" selected="selected">Choose a Furnishing Status</option>
+                <option value="furnished">Furnished</option>
+                <option value="semi-furnished">Semi-Furnished</option>
+                <option value="unfurnished">Un-Furnished</option>
+                </select>                  
+        </div>
+        </div>
+        
+        <div class="row2">
         <h2>MAINROAD</h2>
         <div class="switch-field">
             <input type="radio" id="radio-Mainroad-1" name="mainroad" value="1"/>
@@ -67,7 +79,6 @@
                 <input type="radio" id="radio-Mainroad-2" name="mainroad" value="2" checked/>
                 <label for="radio-Mainroad-2">NO</label>
         </div>
-    
         <h2>GUESTROOM</h2>
         <div class="switch-field">
             <input type="radio" id="radio-Guestroom-1" name="guestroom" value="1"/>
@@ -110,21 +121,14 @@
                     <label for="radio-Pref-2">NO</label>
         </div>
 
-        <h2>FURNISHING STATUS</h2>
-        <div>
-            <select class="location" name="furnishingstatus" id="uiLocations">
-                <option value="" disabled="disabled" selected="selected">Choose a Furnishing Status</option>
-                <option value="furnished">Furnished</option>
-                <option value="semi-furnished">Semi-Furnished</option>
-                <option value="unfurnished">Un-Furnished</option>
-                </select>                  
-        </div>
+
 
         <input type="submit" value="Predict">
         {% if predicted_price %}
         <h2>PREDICTED PRICE</h2>
         <h2 class="predicted-price">$ {{ predicted_price|int }}</h2>
         {% endif %}
+        </div>
     </form> 
 
 </body>
