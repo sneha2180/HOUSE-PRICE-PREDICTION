@@ -8,7 +8,7 @@
 </head>
 
 <body>
-<div class="img"></div>
+<div class="bg"></div>
 
     <form class="form" action="/predict" method="POST">
         <div class="row1">
@@ -70,7 +70,7 @@
                 </select>                  
         </div>
         </div>
-        
+
         <div class="row2">
         <h2>MAINROAD</h2>
         <div class="switch-field">
@@ -120,15 +120,13 @@
                     <input type="radio" id="radio-Pref-2" name="prefarea" value="2" checked/>
                     <label for="radio-Pref-2">NO</label>
         </div>
+    </div>
 
-
-
-        <input type="submit" value="Predict">
+        <input type="submit" value="Predict" class="submit">
         {% if predicted_price %}
-        <h2>PREDICTED PRICE</h2>
         <h2 class="predicted-price">$ {{ predicted_price|int }}</h2>
         {% endif %}
-        </div>
+        
     </form> 
 
 </body>
